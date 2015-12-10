@@ -1,0 +1,35 @@
+proxy () {
+
+  local state=$1
+
+  if [[ "$state" != "on" && "$state" != "off" ]]; then
+    echo "Usage: proxy [on|off]."
+    return 1
+  fi
+
+  # Ask for the administrator password upfront
+  sudo -v
+
+  echo "Turning web proxy $state."
+  for service in "Wi-Fi"; do
+    sudo networksetup -setwebproxy $service 'localhost' '3128'
+    sudo networksetup -setsecurewebproxy $service 'localhost' '3128'
+    sudo networksetup -setwebproxystate "$service" $state
+    sudo networksetup -setsecurewebproxystate $service $state
+  done
+
+  # Export environment variables
+  unset HTTP_PROXY
+  unset HTTPS_PROXY
+
+  if [[ "$state" == "on" ]]; then
+    export HTTP_PROXY="http://localhost:3128"
+    export HTTPS_PROXY=$http_proxy
+
+    # start cntlm if not already running
+    if [[ -z "$(pgrep cntlm)" ]]; then
+      cntlm
+    fi
+  fi
+
+}
