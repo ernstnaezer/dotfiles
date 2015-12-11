@@ -1,4 +1,7 @@
-proxy () {
+#
+# Proxy Switcher using CNTLM.
+#
+proxy() {
 
   local state=$1
 

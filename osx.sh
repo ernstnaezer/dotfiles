@@ -48,6 +48,8 @@ sudo systemsetup -settimezone "Europe/Amsterdam" > /dev/null
 # Disable the "Are you sure you want to open this application?" dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
+# Swap left and right mouse buttons
+defaults -currentHost write -g com.apple.mouse.swapLeftRightButton -int 1
 
 ###############################################################################
 # System Preferences > Users & Groups                                         #
