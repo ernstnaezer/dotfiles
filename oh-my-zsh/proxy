@@ -14,7 +14,7 @@ proxy() {
   sudo -v
 
   echo "Turning web proxy $state."
-  for service in "Wi-Fi"; do
+  for service in "Wi-Fi" "Apple USB Ethernet Adapter"; do
     sudo networksetup -setwebproxy $service 'localhost' '3128'
     sudo networksetup -setsecurewebproxy $service 'localhost' '3128'
     sudo networksetup -setwebproxystate "$service" $state
