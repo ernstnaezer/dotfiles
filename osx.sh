@@ -51,6 +51,9 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 # Swap left and right mouse buttons
 defaults -currentHost write -g com.apple.mouse.swapLeftRightButton -int 1
 
+# Show date and 24h clock in menu bar
+defaults write com.apple.menuextra.clock DateFormat -string "MM dd HH:mm"
+
 ###############################################################################
 # System Preferences > Users & Groups                                         #
 ###############################################################################
