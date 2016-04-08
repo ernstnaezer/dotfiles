@@ -27,7 +27,7 @@ proxy() {
 
   if [[ "$state" == "on" ]]; then
     export HTTP_PROXY="http://localhost:3128"
-    export HTTPS_PROXY=$http_proxy
+    export HTTPS_PROXY=$HTTP_PROXY
 
     # start cntlm if not already running
     if [[ -z "$(pgrep cntlm)" ]]; then
