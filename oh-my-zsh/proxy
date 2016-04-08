@@ -13,13 +13,18 @@ proxy() {
   # Ask for the administrator password upfront
   sudo -v
 
-  echo "Turning web proxy $state."
-  for service in "Wi-Fi" "Apple USB Ethernet Adapter"; do
-    sudo networksetup -setwebproxy $service 'localhost' '3128'
-    sudo networksetup -setsecurewebproxy $service 'localhost' '3128'
-    sudo networksetup -setwebproxystate "$service" $state
-    sudo networksetup -setsecurewebproxystate $service $state
+  echo "Turning web proxy $state for all network devices."
+
+  IFS=$'\n'
+  for service in $(networksetup -listallnetworkservices | tail +2 ); do
+
+    eval "sudo networksetup -setwebproxy '$service' localhost 3128 off"
+    eval "sudo networksetup -setsecurewebproxy '$service' localhost 3128 off"
+
+    eval "sudo networksetup -setwebproxystate '$service' $state"
+    eval "sudo networksetup -setsecurewebproxystate '$service' $state"
   done
+  unset IFS
 
   # Export environment variables
   unset HTTP_PROXY
