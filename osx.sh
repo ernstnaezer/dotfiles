@@ -220,6 +220,13 @@ defaults write com.apple.calculator ViewDefaultsKey -string "Scientific"
 defaults write com.apple.calculator SeparatorsDefaultsKey -bool true
 
 ###############################################################################
+# Menu bar                                                                   #
+###############################################################################
+
+# items: Keychain, Timemachine, Bluetooth, AirPort, Volume, Battery, Clock
+defaults write com.apple.systemuiserver menuExtras -array "/Applications/Utilities/Keychain Access.app/Contents/Resources/Keychain.menu" "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" "/System/Library/CoreServices/Menu Extras/AirPort.menu" "/System/Library/CoreServices/Menu Extras/Volume.menu" "/System/Library/CoreServices/Menu Extras/Battery.menu" "/System/Library/CoreServices/Menu Extras/Clock.menu"
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
