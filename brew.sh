@@ -23,6 +23,8 @@ brew install httpie
 
 brew install Caskroom/cask/atom
 brew install Caskroom/cask/iterm2
+brew install Caskroom/cask/moom
+
 
 # Remove outdated versions from the cellar.
 brew cleanup
