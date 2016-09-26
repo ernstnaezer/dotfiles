@@ -16,7 +16,7 @@ proxy() {
   echo "Turning web proxy $state for all network devices."
 
   IFS=$'\n'
-  for service in $(networksetup -listallnetworkservices | tail +2 ); do
+  for service in $(networksetup -listallnetworkservices | tail -n +2 ); do
 
     eval "sudo networksetup -setwebproxy '$service' localhost 3128 off"
     eval "sudo networksetup -setsecurewebproxy '$service' localhost 3128 off"
