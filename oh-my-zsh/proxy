@@ -16,7 +16,7 @@ proxy() {
   echo "Turning web proxy $state for all network devices."
 
   IFS=$'\n'
-  for service in $(networksetup -listallnetworkservices | tail +2 ); do
+  for service in $(networksetup -listallnetworkservices | tail -n +2 ); do
 
     eval "sudo networksetup -setwebproxy '$service' localhost 3128 off"
     eval "sudo networksetup -setsecurewebproxy '$service' localhost 3128 off"
@@ -27,12 +27,14 @@ proxy() {
   unset IFS
 
   # Export environment variables
-  unset HTTP_PROXY
-  unset HTTPS_PROXY
+  unset HTTP_PROXY HTTPS_PROXY http_proxy https_proxy ALL_PROXY
 
   if [[ "$state" == "on" ]]; then
-    export HTTP_PROXY="http://localhost:3128"
-    export HTTPS_PROXY=$HTTP_PROXY
+    export ALL_PROXY="http://localhost:3128"
+    export HTTPS_PROXY=$ALL_PROXY
+    export https_proxy=$ALL_PROXY
+    export HTTP_PROXY=$ALL_PROXY
+    export http_proxy=$ALL_PROXY
 
     # start cntlm if not already running
     if [[ -z "$(pgrep cntlm)" ]]; then
