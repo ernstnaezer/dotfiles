@@ -60,13 +60,13 @@ proxy() {
     echo "Turning web proxy $state for all network devices."
 
     for service in $(networksetup -listallnetworkservices | tail -n +2 ); do
-      eval "sudo networksetup -setwebproxy '$service' localhost 3128 off"
-      eval "sudo networksetup -setsecurewebproxy '$service' localhost 3128 off"
+      eval "sudo networksetup -setwebproxy '$service' 127.0.0.1 3128 off"
+      eval "sudo networksetup -setsecurewebproxy '$service' 127.0.0.1 3128 off"
 
       eval "sudo networksetup -setwebproxystate '$service' $state"
       eval "sudo networksetup -setsecurewebproxystate '$service' $state"
 
-      eval "sudo networksetup -setproxybypassdomains ''"
+      eval "sudo networksetup -setproxybypassdomains '$service' ''"
     done
 
     touch "$HOME/.proxy.$state"
@@ -77,7 +77,7 @@ proxy() {
   if [[ "$state" == "on" ]]; then
     # start squid if not already running
     if [[ -z "$(pgrep squid)" ]]; then
-      /usr/loca/squid/sbin/squid
+      /usr/local/squid/sbin/squid
     fi
   fi
 
