@@ -18,13 +18,11 @@ brew install findutils
 # Install other useful binaries.
 brew install ack
 brew install git
-brew install aria2c
 brew install httpie
 
 brew install Caskroom/cask/atom
 brew install Caskroom/cask/iterm2
 brew install Caskroom/cask/moom
-
 
 # Remove outdated versions from the cellar.
 brew cleanup

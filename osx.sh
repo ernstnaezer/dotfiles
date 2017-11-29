@@ -51,9 +51,6 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 # Swap left and right mouse buttons
 defaults -currentHost write -g com.apple.mouse.swapLeftRightButton -int 1
 
-# Show date and 24h clock in menu bar
-defaults write com.apple.menuextra.clock DateFormat -string "MM dd HH:mm"
-
 ###############################################################################
 # System Preferences > Users & Groups                                         #
 ###############################################################################
@@ -91,10 +88,9 @@ defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 4
-defaults write NSGlobalDomain InitialKeyRepeat -int 15
-
-defaults write com.apple.keyboard.fnState -bool false
+# defaults write NSGlobalDomain KeyRepeat -int 4
+# defaults write NSGlobalDomain InitialKeyRepeat -int 15
+# defaults write com.apple.keyboard.fnState -bool false
 
 ###############################################################################
 # Screen                                                                      #
@@ -143,14 +139,14 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool false
 defaults write NSGlobalDomain com.apple.springing.enabled -bool true
 
 # Remove the spring loading delay for directories
-defaults write NSGlobalDomain com.apple.springing.delay -float 0
+# defaults write NSGlobalDomain com.apple.springing.delay -float 0
 
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
 # Remove Dropbox’s green checkmark icons in Finder
-file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
-[ -e "${file}" ] && mv -f "${file}" "${file}.bak"
+# file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
+# [ -e "${file}" ] && mv -f "${file}" "${file}.bak"
 
 # Expand the following File Info panes:
 # “General”, “Open with”, and “Sharing & Permissions”
@@ -203,9 +199,6 @@ defaults write com.apple.dock wvous-tl-modifier -int 0
 # Allow hitting the Backspace key to go to the previous page in history
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true
 
-# disable auto fill of passwords (using Dashlane for this)
-defaults write com.apple.safari AutoFillPasswords -bool false
-
 ###############################################################################
 # Calculator                                                                  #
 ###############################################################################
@@ -224,7 +217,7 @@ defaults write com.apple.calculator SeparatorsDefaultsKey -bool true
 ###############################################################################
 
 # items: Keychain, Timemachine, Bluetooth, AirPort, Volume, Battery, Clock
-defaults write com.apple.systemuiserver menuExtras -array "/Applications/Utilities/Keychain Access.app/Contents/Resources/Keychain.menu" "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" "/System/Library/CoreServices/Menu Extras/AirPort.menu" "/System/Library/CoreServices/Menu Extras/Volume.menu" "/System/Library/CoreServices/Menu Extras/Battery.menu" "/System/Library/CoreServices/Menu Extras/Clock.menu"
+# defaults write com.apple.systemuiserver menuExtras -array "/Applications/Utilities/Keychain Access.app/Contents/Resources/Keychain.menu" "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" "/System/Library/CoreServices/Menu Extras/AirPort.menu" "/System/Library/CoreServices/Menu Extras/Volume.menu" "/System/Library/CoreServices/Menu Extras/Battery.menu" "/System/Library/CoreServices/Menu Extras/Clock.menu"
 
 ###############################################################################
 # Kill affected applications                                                  #

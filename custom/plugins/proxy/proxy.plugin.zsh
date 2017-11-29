@@ -1,5 +1,5 @@
 #
-# Proxy Switcher using CNTLM.
+# Proxy Switcher using Squid.
 #
 # proxy() changes the proxy network settings and makes this state global by managing the exlusive existence of
 # ~/.proxy.on and ~/.proxy.off. It also calls proxy_envs() for convenience
@@ -65,6 +65,8 @@ proxy() {
 
       eval "sudo networksetup -setwebproxystate '$service' $state"
       eval "sudo networksetup -setsecurewebproxystate '$service' $state"
+
+      eval "sudo networksetup -setproxybypassdomains ''"
     done
 
     touch "$HOME/.proxy.$state"
@@ -73,13 +75,11 @@ proxy() {
   unset IFS
 
   if [[ "$state" == "on" ]]; then
-    # start cntlm if not already running
-    if [[ -z "$(pgrep cntlm)" ]]; then
-      cntlm
+    # start squid if not already running
+    if [[ -z "$(pgrep squid)" ]]; then
+      /usr/loca/squid/sbin/squid
     fi
   fi
 
   proxy_envs
 }
-
-proxy_envs
