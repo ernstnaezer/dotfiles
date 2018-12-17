@@ -67,7 +67,7 @@ defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 2
-defaults write NSGlobalDomain InitialKeyRepeat -int 3
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
 defaults write com.apple.keyboard.fnState -bool false
 
 ###############################################################################
